@@ -14,43 +14,5 @@ It also means that there will be a very low barrier for entry. Open Parlour is m
 
 See the (_to be written_) technical design for details on how I intend to make this possible.
 
-For now, behold the majesty of my crappy ASCII design diagram :)
+For now, behold the majesty of my crappy ASCII design diagram :)rk
 
-```
-+-------------------+
-|                   |          +------------------------+
-|   Web Client      |          |  ASCII / Curses Client |
-|                   |          |                        |
-+-------------------+----------+------------------------+
-                        ||
-                        ||
-                        ||
-                        ||
-                        ||
-                        ||
-                        ||
-                        ||
-                        ||
-                 +------vv----------------------+
-                 |                              |
-                 |   Flask                      |
-                 |   (REST API)                 |
-                 |                              |
-                 |                              |
-                 |                              |
-                 +---------------+--------------+
-                                 |
-                                 |
-                                 |
-                                 |
-                                 |
-                      +----------v----------+
-                      |                     |
-                      | Database            |
-                      | (SQLAlchemy Compat.)|
-                      |                     |
-                      |                     |
-                      |                     |
-                      +---------------------+
-jjjjjjj
-```
