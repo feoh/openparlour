@@ -1,4 +1,7 @@
+from flask import request
+from flask import app
 from flask import Flask
+from pprint import pprint
 
 app = Flask(__name__)
 
@@ -6,6 +9,11 @@ app = Flask(__name__)
 def get_post(post_number):
     pass
 
-@app.route('/openparlour/post/', methods=['POST'])
+@app.route('/openparlour/post', methods=['POST'])
 def post():
-    pass
+    if request.is_json:
+        req_json = request.get_json
+        pprint(req_json)
+
+
+
