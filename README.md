@@ -12,7 +12,6 @@ Instead, Open Parlour is about creating a place where you can share with a commu
 
 It also means that there will be a very low barrier for entry. Open Parlour is meant to run on pretty much any thing that computes and has a traditional filesystem that runs Python. It won't require any special technical skills, because it won't have any external dependencies. No database to maintain, no complex component configurations to set up. None of that. It's all self contained.
 
-See the (_to be written_) technical design for details on how I intend to make this possible.
+See the technical design for details on how I intend to make this possible.
 
-For now, behold the majesty of my crappy ASCII design diagram :)rk
 
