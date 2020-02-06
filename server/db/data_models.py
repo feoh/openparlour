@@ -1,15 +1,16 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
 ModelBase = declarative_base()
 
 
 class Room(ModelBase):
+    __tablename__ = "rooms"
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
 
-    def to_json(self):
+    def to_dict(self):
         return {
             'id': self.id,
             'name': self.name
@@ -20,12 +21,12 @@ class Room(ModelBase):
 class Post(ModelBase):
     __tablename__ = "posts"
     id = Column(Integer, primary_key=True)
-    room = relationship(Room)
+    room = relationship(Room, uselist=False)
     date = Column(DateTime)
     title = Column(String, unique=True)
     body = Column(String)
 
-    def to_json(self):
+    def to_dict(self):
         return {
             'id': self.id,
             'room': self.room,
@@ -35,27 +36,15 @@ class Post(ModelBase):
         }
 
 
-class BlockedRooms(ModelBase):
-    id = Column(Integer, primary_key=True)
-    rooms = relationship(Room)
-
-    def to_json(self):
-        return {
-            'id': self.id,
-            'rooms': self.rooms
-        }
-
-
 class House(ModelBase):
+    __tablename__ = "houses"
     id = Column(Integer, primary_key=True)
     address = Column(String, primary_key=True)
-    blocked_rooms = relationship(BlockedRooms)
 
-    def to_json(self):
+    def to_dict(self):
         return {
             'id': self.id,
             'address': self.address,
-            'blocked_rooms': self.blocked_rooms
         }
 
 
