@@ -1,6 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
 
 ModelBase = declarative_base()
 
@@ -8,7 +7,7 @@ ModelBase = declarative_base()
 class Room(ModelBase):
     __tablename__ = "rooms"
     id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True)
+    name = Column(String, unique=True, nullable=False)
 
     def to_dict(self):
         return {
@@ -21,8 +20,8 @@ class Room(ModelBase):
 class Post(ModelBase):
     __tablename__ = "posts"
     id = Column(Integer, primary_key=True)
-    room = relationship(Room, uselist=False)
-    date = Column(DateTime)
+    room = Column(Integer, ForeignKey("rooms.id"), nullable=False)
+    date = Column(DateTime, nullable=False)
     title = Column(String, unique=True)
     body = Column(String)
 
