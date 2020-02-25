@@ -20,6 +20,12 @@ def initialize_orm(db_uri="sqlite:///myplace-db.sqlite"):
     return session
 
 
+def add_commit_refresh(session, thing):
+    session.add(thing)
+    session.commit()
+    session.refresh(thing)
+
+
 def get_all_rooms(session):
     session = initialize_orm()
     all_rooms_query = session.query(Room).all()
@@ -31,14 +37,18 @@ def get_all_posts(session):
 
 
 def create_post(session, room, date, title, body):
-    post = Post(room="LivingRoom", date=datetime.now(), title=title, body=body)
-    session.add(post)
-    session.commit()
+    post = Post(room=room, date=datetime.now(), title=title, body=body)
+    add_commit_refresh(session, post)
+    return post.id
 
 
 def create_room(session, name):
-    room = Room(1, "Parlour")
-    session.add(room)
-    session.commit()
+    room = Room(1, name)
+    add_commit_refresh(session, room)
+    return room.id
 
 
+def create_house(session, address):
+    house = House(id=1, address="http://nyi.nyi")
+    add_commit_refresh(session, house)
+    return house.id
