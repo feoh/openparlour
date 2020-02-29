@@ -15,6 +15,9 @@ class Room(ModelBase):
             'name': self.name
         }
 
+    def __repr__(self):
+        return str(self.to_dict())
+
 
 # The basic unit of communication in MyHouse is the Post.
 class Post(ModelBase):
@@ -34,6 +37,9 @@ class Post(ModelBase):
             'body': self.body
         }
 
+    def __repr__(self):
+        return str(self.to_dict())
+
 
 class House(ModelBase):
     __tablename__ = "houses"
@@ -46,4 +52,6 @@ class House(ModelBase):
             'address': self.address,
         }
 
+    def __repr__(self):
+        return str(self.to_dict())
 

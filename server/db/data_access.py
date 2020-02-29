@@ -33,7 +33,8 @@ def get_all_rooms(session):
 
 def get_all_posts(session):
     session = initialize_orm()
-    all_posts_query = session.query()
+    all_posts_query = session.query(Post).all()
+    return list(all_posts_query)
 
 
 def create_post(session, room, date, title, body):
