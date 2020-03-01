@@ -4,7 +4,7 @@ import pytest
 import datetime
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def test_db():
     test_db = initialize_orm("sqlite:///test-openparlour-db.sqlite")
     yield test_db
@@ -32,7 +32,7 @@ def test_house_to_dict():
 
 
 def test_create_post(test_db):
-    assert create_post(test_db, room=1, date="2020-12-01", title="Test Title", body="Test post body yeah yeah yeah!") == 1
+    assert create_post(test_db, room=1, date="2020-12-01", title="Test Title Single", body="Test post body yeah yeah yeah!") == 1
 
 
 def test_create_house(test_db):
@@ -40,13 +40,13 @@ def test_create_house(test_db):
 
 
 def test_get_all_posts(test_db):
-    assert create_post(test_db, room=1, date="2020-12-01", title="Test Title", body="Test post body yeah yeah yeah!") == 1
-    assert create_post(test_db, room=1, date="2020-12-02", title="Test Title 2", body="Test post body yeah yeah yeah!") == 2
-    assert create_post(test_db, room=1, date="2020-12-03", title="Test Title 3", body="Test post body yeah yeah yeah!") == 3
-    assert create_post(test_db, room=1, date="2020-12-04", title="Test Title 4", body="Test post body yeah yeah yeah!") == 4
+    assert create_post(test_db, room=1, date="2020-12-01", title="Test Title 1", body="Test post body yeah yeah yeah!") == 2
+    assert create_post(test_db, room=1, date="2020-12-02", title="Test Title 2", body="Test post body yeah yeah yeah!") == 3
+    assert create_post(test_db, room=1, date="2020-12-03", title="Test Title 3", body="Test post body yeah yeah yeah!") == 4
+    assert create_post(test_db, room=1, date="2020-12-04", title="Test Title 4", body="Test post body yeah yeah yeah!") == 5
     all_posts = get_all_posts(test_db)
-    assert len(all_posts) == 4
+    assert len(all_posts) == 5
     post_1 = all_posts[1]
-    assert post_1.id == 1
-    assert post_1.title == "Test Title"
+    assert post_1.id == 2
+    assert post_1.title == "Test Title 1"
 

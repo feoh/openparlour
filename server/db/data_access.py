@@ -27,12 +27,10 @@ def add_commit_refresh(session, thing):
 
 
 def get_all_rooms(session):
-    session = initialize_orm()
     all_rooms_query = session.query(Room).all()
 
 
 def get_all_posts(session):
-    session = initialize_orm()
     all_posts_query = session.query(Post).all()
     return list(all_posts_query)
 
