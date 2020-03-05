@@ -1,5 +1,5 @@
 from db.data_models import Post, Room, House
-from db.data_access import nuke_db, initialize_orm, create_post, create_house, get_all_posts, get_all_rooms
+from db.data_access import nuke_db, initialize_orm, create_post, create_house, get_all_posts, get_all_rooms, get_post_by_id
 import pytest
 import datetime
 
@@ -50,3 +50,8 @@ def test_get_all_posts(test_db):
     assert post_1.id == 2
     assert post_1.title == "Test Title 1"
 
+
+def test_get_post_by_id(test_db):
+    single_post_list = get_post_by_id(test_db, 5)
+    single_post = single_post_list[0]
+    assert single_post.title == "Test Title 4"

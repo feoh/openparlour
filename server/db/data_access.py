@@ -30,6 +30,11 @@ def get_all_rooms(session):
     all_rooms_query = session.query(Room).all()
 
 
+def get_post_by_id(session, id):
+    single_post_query = session.query(Post).filter(Post.id == id)
+    return list(single_post_query)
+
+
 def get_all_posts(session):
     all_posts_query = session.query(Post).all()
     return list(all_posts_query)
